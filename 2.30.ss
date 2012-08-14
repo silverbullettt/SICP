@@ -1,0 +1,6 @@
+(define (square-tree tree)
+  (map (lambda (sub-tree)
+         (if (pair? sub-tree)
+             (square-tree sub-tree)
+             (lambda (x) (* x x))))
+       tree))

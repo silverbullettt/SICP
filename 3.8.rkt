@@ -1,0 +1,5 @@
+(define (f x)
+  (let ((value 0))
+    (cond ((= x 0) (set! value (+ value 1)) value)
+          ((= value 1) (set! value (- value 1)) value)
+          (else value))))

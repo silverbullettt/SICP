@@ -1,0 +1,8 @@
+(define a 6)
+(define b 7)
+(define c 5)
+(define (sum-of-big-two a b c)
+  (cond ((and (> a c) (> b c)) (+ a b))
+        ((and (> a b) (> c b)) (+ a c))
+        (else (+ b c))))
+(sum-of-big-two a b c)

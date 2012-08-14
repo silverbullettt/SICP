@@ -1,0 +1,27 @@
+(define (count-pairs x)
+  (let ((past-list '()))
+    (define (pointer-in-list? p l)
+      (cond ((null? l) #f)
+            ((eq? p (car l)) #t)
+            (else (pointer-in-list? p (cdr l)))))
+    (define (append-cons l p-list)
+      (set! p-list (cons (caar l) p-list))
+      p-list)
+    (define (iter list past-list n)
+      (cond ((not (pair? list)) n)
+            ((pointer-in-list? (cdr list) past-list) n)
+            (else
+             (+ (iter (cdr list) (append-cons list past-list) (+ n 1))
+                (iter (car list) past-list 0)))))
+    (iter x past-list 0)))                                        
+
+(define z (cons 1 (cons (list 1 2) (list 1))))
+(define p
+  (let ((x (cons 1 (cons (list 1 2) (list 1)))))
+    (set-cdr! (cdadr x) (cadr x))
+    x))
+
+(define (pointer-in-list? p l)
+    (cond ((null? l) #f)
+          ((eq? p (car l)) #t)
+          (else (pointer-in-list? p (cdr l)))))
